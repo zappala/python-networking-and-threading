@@ -60,11 +60,7 @@ class DownThread(threading.Thread):
         print 'Downloading %s' % self.url
         r = requests.get(self.url, stream=True)
         with open(self.filename, 'wb') as f:
-            for chunk in r.iter_content(10000):
-                if not chunk:
-                    break
-                f.write(chunk)
-                f.flush
+            f.write(r.content)
  
 if __name__ == '__main__':
     d = Downloader()

@@ -43,10 +43,7 @@ class Downloader:
         print 'Downloading %s' % url
         r = requests.get(url, stream=True)
         with open(filename, 'wb') as f:
-            for chunk in r.iter_content(10000):
-                if chunk:
-                    f.write(chunk)
-                    f.flush
+            f.write(r.content)
 
  
 if __name__ == '__main__':
