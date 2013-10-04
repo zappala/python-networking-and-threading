@@ -15,10 +15,10 @@ class Downloader:
     def parse_arguments(self):
         ''' parse arguments, which include '-i' for input file and
         '-d' for download directory'''
-        parser = argparse.ArgumentParser(prog='Mass downloader', description='A simple script that downloads multiple files from URLs specified in a file', add_help=True)
-        parser.add_argument('-i', '--input', type=str, action='store', help='Used to specify the input file. Otherwise the default urls.txt is used')
-        parser.add_argument('-d', '--dir', type=str, action='store', help='Specify output directory for downloads')
-        args=parser.parse_args()
+        parser = argparse.ArgumentParser(prog='Mass downloader', description='A simple script that downloads multiple files from a list of URLs specified in a file', add_help=True)
+        parser.add_argument('-i', '--input', type=str, action='store', help='Specify the input file containing a list of URLs, default is urls.txt')
+        parser.add_argument('-d', '--dir', type=str, action='store', help='Specify the directory where downloads are stored, default is downloads')
+        args = parser.parse_args()
         if args.input:
             self.in_file = args.input
         if args.dir:
