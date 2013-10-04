@@ -14,7 +14,7 @@ class Hello(threading.Thread):
 
 def parse_options():
         parser = argparse.ArgumentParser(prog='threadHello', description='Simple demonstration of threading', add_help=True)
-        parser.add_argument('-n', '--number', type=int, action='store', help='Specify the number of threads to create')
+        parser.add_argument('-n', '--number', type=int, action='store', help='Specify the number of threads to create',default=10)
         return parser.parse_args()
 
 if __name__ == "__main__":

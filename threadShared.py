@@ -5,15 +5,15 @@ import threading
 class Shared:
     """ Shared memory """
     def __init__(self):
-        self.sharedi = 0
+        self.i = 0
         self.sem = threading.Semaphore()
         self.lock = threading.Lock()
 
     def inc(self):
         """ increment the shared varable """
         self.sem.acquire()
-        self.sharedi = self.sharedi + 1
-        s = self.sharedi
+        self.i = self.i + 1
+        s = self.i
         self.sem.release()
         return s
 
@@ -33,7 +33,7 @@ class Hello(threading.Thread):
 
 def parse_options():
         parser = argparse.ArgumentParser(prog='threadHello', description='Simple demonstration of threading', add_help=True)
-        parser.add_argument('-n', '--number', type=int, action='store', help='Specify the number of threads to create')
+        parser.add_argument('-n', '--number', type=int, action='store', help='Specify the number of threads to create',default=10)
         return parser.parse_args()
 
 if __name__ == "__main__":
