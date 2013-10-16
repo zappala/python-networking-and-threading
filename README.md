@@ -2,17 +2,11 @@
 
 Sample code for Python networking and threading
 
-## Download
-
-This small program downloads a set of URLs, located in `urls.txt`, and
-stores them in a directory called `downloads`.
-
-> python download.py -i [input file] -d [download directory]
-
 ## Simple Threading Examples
 
-The program `threadHello.py` shows how to create a set of threads that
-print a message and their thread ID.
+In the `threading` directory are two programs to demonstrate the use
+of threading in Python. The program `threadHello.py` shows how to
+create a set of threads that print a message and their thread ID.
 
 > python threadHello.py -n [number]
 
@@ -23,10 +17,17 @@ accessed through a thread-safe object.
 
 > python threadShared.py -n [number]
 
-## Threaded Download
+## Download
 
-This program modifies `download.py` to create a separate thread to
-download each URL:
+In the `download` directory are two programs that demonstrate using
+the Python Requests library. The program `download.py` downloads a set
+of URLs, located in `urls.txt`, and stores them in a directory called
+`downloads`.
+
+> python download.py -i [input file] -d [download directory]
+
+The program `threadedDownload.py` creates a separate thread to
+download each URL in parallel:
 
 > python download.py -i [input file] -d [download directory]
 
@@ -48,4 +49,26 @@ time versus the number of threads, one for each file.
 
 > python plot.py
 
+## Echo Server
 
+The code in the `echo-server` directory shows how to use the
+lower-level Python sockets library as well as how to create a server
+based on polling. The program `echo-server.py` uses `server.py` to create
+a basic echo server:
+
+> python echoserver.py -p [port]
+
+The program `echo-client.py` uses `client.py` to create a basic echo client:
+
+> python echoclient.py -s [server] -p [port]
+
+This version of the echo server can handle only one client at a time.
+
+The program `echoserver-poll.py` uses `poller.py` to show how a server
+can use the poll() system call to multiplex handling multiple clients
+while using a single thread of control.
+
+Note that because the server is so simple, this code does not do many
+other things a polling server should do, such as using non-blocking
+I/O, timing out idle sockets, and using a separate receive cache for
+each client.
