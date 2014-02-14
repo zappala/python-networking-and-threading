@@ -4,9 +4,10 @@ import sys
 # Run a set of download experiments
 
 # List of URLs to download
-urls = [("small","http://ilab.cs.byu.edu/zappala/files/design-philosophy-sigcomm-88.pdf"),
-        ("medium","http://ilab.cs.byu.edu/zappala/files/Delta-Rae-Morning-Comes-Live.mp3"),
-        ("large","http://ilab.cs.byu.edu/zappala/files/poster.pdf")]
+urls = [        ("small","https://dl.dropboxusercontent.com/u/543382/design-philosophy-sigcomm-88.pdf"),
+                ("medium","https://dl.dropboxusercontent.com/u/543382/Delta-Rae-Morning-Comes-Live.mp3"),
+                ("large","https://dl.dropboxusercontent.com/u/543382/poster.pdf")]
+
 
 # Number of threads to use
 threads = [1,2,3,5,10]
