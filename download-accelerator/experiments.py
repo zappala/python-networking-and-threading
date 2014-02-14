@@ -3,6 +3,12 @@ import sys
 
 # Run a set of download experiments
 
+# List of URLs to download (try these if DropBox doesn't work)
+urls = [        ("small","http://174.52.164.54/files/design-philosophy-sigcomm-88.pdf"),
+                ("medium","http://174.52.164.54/files/Delta-Rae-Morning-Comes-Live.mp3"),
+                ("large","http://174.52.164.54/files/poster.pdf")]
+
+
 # List of URLs to download
 urls = [        ("small","https://dl.dropboxusercontent.com/u/543382/design-philosophy-sigcomm-88.pdf"),
                 ("medium","https://dl.dropboxusercontent.com/u/543382/Delta-Rae-Morning-Comes-Live.mp3"),
