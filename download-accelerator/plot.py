@@ -49,7 +49,7 @@ class Plotter:
 		boxplot(x,positions=keys)
 		xlabel('Number of Threads')
 		ylabel('Download Time')
-		savefig('download-time-%s.pdf' % name)
+		savefig('download-time-%s.png' % name)
 
 if __name__ == '__main__':
     p = Plotter()
