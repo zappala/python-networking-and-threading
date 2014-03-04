@@ -1,6 +1,8 @@
+import errno
 import select
 import socket
 import sys
+import traceback
 
 class Poller:
     """ Polling server """
@@ -18,6 +20,7 @@ class Poller:
             self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
             self.server.bind((self.host,self.port))
             self.server.listen(5)
+            self.server.setblocking(0)
         except socket.error, (value,message):
             if self.server:
                 self.server.close()
@@ -60,12 +63,32 @@ class Poller:
             del self.clients[fd]
 
     def handleServer(self):
-        (client,address) = self.server.accept()
-        self.clients[client.fileno()] = client
-        self.poller.register(client.fileno(),self.pollmask)
+        # accept as many clients are possible
+        while True:
+            try:
+                (client,address) = self.server.accept()
+            except socket.error, (value,message):
+                # if socket blocks because no clients are available,
+                # then return
+                if value == errno.EAGAIN or errno.EWOULDBLOCK:
+                    return
+                print traceback.format_exc()
+                sys.exit()
+            # set client socket to be non blocking
+            client.setblocking(0)
+            self.clients[client.fileno()] = client
+            self.poller.register(client.fileno(),self.pollmask)
 
     def handleClient(self,fd):
-        data = self.clients[fd].recv(self.size)
+        try:
+            data = self.clients[fd].recv(self.size)
+        except socket.error, (value,message):
+            # if no data is available, move on to another client
+            if value == errno.EAGAIN or errno.EWOULDBLOCK:
+                return
+            print traceback.format_exc()
+            sys.exit()
+
         if data:
             self.clients[fd].send(data)
         else:
