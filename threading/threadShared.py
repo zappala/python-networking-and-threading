@@ -29,7 +29,7 @@ class Hello(threading.Thread):
         self.i = self.i + 1
         s = self.shared.inc()
         with self.shared.lock:
-            print "Hello from thread %s i = %d shared = %d" % (self.getName(),i,s)
+            print "Hello from thread %s i = %d shared = %d" % (self.getName(),self.i,s)
 
 def parse_options():
         parser = argparse.ArgumentParser(prog='threadHello', description='Simple demonstration of threading', add_help=True)
