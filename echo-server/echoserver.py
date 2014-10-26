@@ -8,7 +8,7 @@ import argparse
 from server import Server
 
 class Main:
-    """ Parse command line options and perform the download. """
+    """ Parse command line options and run the server. """
     def __init__(self):
         self.parse_arguments()
 
