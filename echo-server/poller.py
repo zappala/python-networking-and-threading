@@ -63,7 +63,7 @@ class Poller:
             del self.clients[fd]
 
     def handleServer(self):
-        # accept as many clients are possible
+        # accept as many clients as possible
         while True:
             try:
                 (client,address) = self.server.accept()
